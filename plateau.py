@@ -1,7 +1,7 @@
 from math import *
 #plateau
-widht,height = 8,8
-plate = [["vide"for _ in range(widht)]for _ in range(height)]
+width,height = 8,8
+plate = [[(None)for _ in range(width)]for _ in range(height)]
 
 # for element in plate:
 #     print(element,"\n")
@@ -18,7 +18,7 @@ blk_p = "bl_p"
 
 black_pieces = [blk_r,blk_k,blk_b,blk_ki,blk_q,blk_b,blk_k,blk_r]
 
-black_pawn = [(blk_p)for _ in range(widht)]
+black_pawn = [(blk_p)for _ in range(width)]
 # print(black_pawn)
 # print(black_pieces)
 
@@ -32,7 +32,7 @@ wht_q = "wh_q"
 
 wht_p = "wh_p"
 white_pieces = [wht_r,wht_k,wht_b,wht_ki,wht_q,wht_b,wht_k,wht_r]
-white_pawn = [(wht_p)for _ in range(widht)]
+white_pawn = [(wht_p)for _ in range(width)]
 # print(white_pawn)
 # print(white_pieces)
 
@@ -52,7 +52,7 @@ for element in plate:
     print(element,"\n")
 
 lettres = ["a","b","c","d","e","f","g","h"]
-chiffres = [(8-i)for i in range(0,widht)]
+chiffres = [(8-i)for i in range(0,width)]
 
 # transfome les coordonnées courante en chiffres
 def coordinate(co):
@@ -101,11 +101,11 @@ def valid_forward_or_backward_move(coordinate):
     valid_forward_move = True
     if coordinate[3] < coordinate[1]:
         for i in range(coordinate[3]+1,coordinate[1]):
-            if plate[i][coordinate[0]] != "vide":
+            if plate[i][coordinate[0]] != None:
                 valid_forward_move = False
     elif coordinate[3] > coordinate[1]:
         for i in range(coordinate[1]+1,coordinate[3]):
-            if plate[i][coordinate[0]] != "vide":
+            if plate[i][coordinate[0]] != None:
                 valid_forward_move = False
     return valid_forward_move
 
@@ -115,7 +115,8 @@ def valid_move_pawn(coordinate):
     valid_move_pawn = False
     if plate[coordinate[1]][coordinate[0]] == wht_p:
         if coordinate[1] == 6:
-            if coordinate[1] == coordinate[3]-2 or coordinate[1] == coordinate[3]-1:
+            
+            if coordinate[1] == coordinate[3]+2 or coordinate[1] == coordinate[3]+1:
                 if valid_forward_or_backward_move(coordinate) == True:
                     valid_move_pawn =   True
         if coordinate[1] == coordinate[3]+1:
@@ -129,14 +130,12 @@ def valid_move_pawn(coordinate):
         if coordinate[1] == coordinate[3]-1:
             print(coordinate[1],coordinate[3])
             valid_move_pawn = True
-            
     return valid_move_pawn
 
 
-coo = coordinate("e4e3")
+coo = coordinate("e2e3")
 print(coo)
 
 print("\n \n")
-plate[4][4] = "bl_p"
 
 print(valid_move_pawn(coo))
