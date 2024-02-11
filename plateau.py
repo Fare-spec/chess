@@ -110,7 +110,7 @@ def valid_forward_or_backward_move(coordinate):
     return valid_forward_move
 
 
-
+# pour les mouvements divers des pions
 def valid_move_pawn(coordinate):
     valid_move_pawn = False
     if plate[coordinate[1]][coordinate[0]] == wht_p:
@@ -132,10 +132,20 @@ def valid_move_pawn(coordinate):
             valid_move_pawn = True
     return valid_move_pawn
 
+# pour les mouvement horizontaux
+def valid_left_rightward_move(coordinate):
+    valid_left_rightward_move = True
+    if coordinate[2] < coordinate[0]:
+        for i in range(coordinate[2]+1, coordinate[0]):
+            if plate[coordinate[1]][i] != None:
+                valid_left_rightward_move = False
+    elif coordinate[2] > coordinate[0]:
+        for i in range(coordinate[0]+1,coordinate[2]):
+            if plate[coordinate[1]][i] != None:
+                valid_left_rightward_move = False
+    return valid_left_rightward_move
 
-coo = coordinate("e2e3")
+coo = coordinate("e1a1")
+plate[4][4] = blk_r
+print(plate[4][4])
 print(coo)
-
-print("\n \n")
-
-print(valid_move_pawn(coo))
