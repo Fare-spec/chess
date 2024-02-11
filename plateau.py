@@ -114,34 +114,29 @@ def valid_forward_or_backward_move(coordinate):
 def valid_move_pawn(coordinate):
     valid_move_pawn = False
     if plate[coordinate[1]][coordinate[0]] == wht_p:
-        print("passer1")
-        print(coordinate[1])
         if coordinate[1] == 6:
-            print("passer 2")
             if coordinate[1] == coordinate[3]-2 or coordinate[1] == coordinate[3]-1:
                 if valid_forward_or_backward_move(coordinate) == True:
                     valid_move_pawn =   True
-        if coordinate[1] == coordinate[3]-1:
+        if coordinate[1] == coordinate[3]+1:
+            print(coordinate[1],coordinate[3])
             valid_move_pawn = True
     elif plate[coordinate[1]][coordinate[0]] == blk_p:
         if coordinate[1] == 5:
             if coordinate[1] == coordinate[3]+2 or coordinate[1] == coordinate[3]+1:
                 if valid_forward_or_backward_move(coordinate) == True:
                     valid_move_pawn = True
+        if coordinate[1] == coordinate[3]-1:
+            print(coordinate[1],coordinate[3])
+            valid_move_pawn = True
             
     return valid_move_pawn
 
 
-coo = coordinate("e4e5")
+coo = coordinate("e4e3")
 print(coo)
 
 print("\n \n")
-plate[coo[1]][coo[0]] = "wh_p"
-for element in plate:
-    print(element,"\n")
-print(valid_move_pawn(coo))
-plate[coo[1]][coo[0]] = "vide"
-plate[coo[3]][coo[2]] ="wh_p"
-for element in plate:
-    print(element,"\n")
+plate[4][4] = "bl_p"
+
 print(valid_move_pawn(coo))
