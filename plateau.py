@@ -145,7 +145,30 @@ def valid_left_rightward_move(coordinate):
                 valid_left_rightward_move = False
     return valid_left_rightward_move
 
-coo = coordinate("e1a1")
-plate[4][4] = blk_r
-print(plate[4][4])
+
+
+def valid_move_rook(coordinate):
+    valid_move_rook = False
+    if coordinate[1] == coordinate[3]:
+        if valid_forward_or_backward_move(coordinate) == True:
+            if plate[coordinate[2]][coordinate[3]] == None:
+                valid_move_rook = True
+            else:
+                if valid_eat(coordinate) == True:
+                    valid_move_rook = True
+    elif coordinate[0] == coordinate[2]:
+        if valid_left_rightward_move(coordinate) == True:
+            if plate[coordinate[2]][coordinate[3]] == None:
+                valid_move_rook =True
+            elif valid_eat(coordinate) == True:
+                valid_move_rook = True
+    return valid_move_rook
+
+
+
+
+coo = coordinate("a3e3")
+plate[coo[2]][coo[3]] = blk_r
+print(plate[coo[2]][coo[3]])
 print(coo)
+print(valid_move_rook(coo))
