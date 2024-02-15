@@ -82,19 +82,15 @@ def valid_mv_knight(coordinate):
 def valid_eat(coordinate):
     valid_eat = True
     for element in black_pieces:
-
         if plate[coordinate[1]][coordinate[0]] == element or plate[coordinate[1]][coordinate[0]] == blk_p:
-
             if plate[coordinate[3]][coordinate[2]] == element or plate[coordinate[3]][coordinate[2]] == blk_p:
                 valid_eat = False
-
     for element in white_pieces:
-
         if plate[coordinate[1]][coordinate[0]] == element or plate[coordinate[1]][coordinate[0]] == wht_p:
-
+            
             if plate[coordinate[3]][coordinate[2]] == element or plate[coordinate[3]][coordinate[2]] == wht_p:
+                print("te")
                 valid_eat = False
-
     return valid_eat
 
 def valid_forward_or_backward_move(coordinate):
@@ -149,26 +145,30 @@ def valid_left_rightward_move(coordinate):
 
 def valid_move_rook(coordinate):
     valid_move_rook = False
-    if coordinate[1] == coordinate[3]:
-        if valid_forward_or_backward_move(coordinate) == True:
-            if plate[coordinate[2]][coordinate[3]] == None:
-                valid_move_rook = True
-            else:
-                if valid_eat(coordinate) == True:
+    if plate[coordinate[1]][coordinate[0]] ==  blk_r or wht_r:
+        if coordinate[1] == coordinate[3]:
+            if valid_left_rightward_move(coordinate) == True:
+                if plate[coordinate[2]][coordinate[3]] == None:
                     valid_move_rook = True
-    elif coordinate[0] == coordinate[2]:
-        if valid_left_rightward_move(coordinate) == True:
-            if plate[coordinate[2]][coordinate[3]] == None:
-                valid_move_rook =True
-            elif valid_eat(coordinate) == True:
-                valid_move_rook = True
+                else:
+                    if valid_eat(coordinate) == True:
+                        valid_move_rook = True
+        elif coordinate[0] == coordinate[2]:
+            if valid_forward_or_backward_move(coordinate) == True:
+                if plate[coordinate[2]][coordinate[3]] == None:
+                    valid_move_rook =True
+                    print("test")
+                elif valid_eat(coordinate) == True:
+                    print("test")
+                    valid_move_rook = True
     return valid_move_rook
 
 
 
 
-coo = coordinate("a3e3")
-plate[coo[2]][coo[3]] = blk_r
-print(plate[coo[2]][coo[3]])
-print(coo)
-print(valid_move_rook(coo))
+coordinat = coordinate("e3e2")
+plate[coordinat[1]][coordinat[0]] = wht_r
+print(valid_move_rook(coordinat))
+coo = coordinate("e2e1")
+plate[coo[1]][coo[0]] = wht_q
+print(valid_eat(coordinate("e2e1")))
