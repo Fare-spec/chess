@@ -107,7 +107,6 @@ def valid_eat(coordinate):
                 plate[coordinate[3]][coordinate[2]] == element
                 or plate[coordinate[3]][coordinate[2]] == wht_p
             ):
-                print("te")
                 valid_eat = False
     return valid_eat
 
@@ -135,7 +134,6 @@ def valid_move_pawn(coordinate):
                 if valid_forward_or_backward_move(coordinate) == True:
                     valid_move_pawn = True
         if coordinate[1] == coordinate[3] + 1:
-            print(coordinate[1], coordinate[3])
             valid_move_pawn = True
     elif plate[coordinate[1]][coordinate[0]] == blk_p:
         if coordinate[1] == 5:
@@ -143,7 +141,6 @@ def valid_move_pawn(coordinate):
                 if valid_forward_or_backward_move(coordinate) == True:
                     valid_move_pawn = True
         if coordinate[1] == coordinate[3] - 1:
-            print(coordinate[1], coordinate[3])
             valid_move_pawn = True
     return valid_move_pawn
 
@@ -174,18 +171,13 @@ def valid_move_rook(coordinate):
                         valid_move_rook = True
         elif coordinate[0] == coordinate[2]:
             if valid_forward_or_backward_move(coordinate) == True:
-                if plate[coordinate[2]][coordinate[3]] == None:
+                if plate[coordinate[3]][coordinate[2]] == None:
                     valid_move_rook = True
-                    print("test")
                 elif valid_eat(coordinate) == True:
-                    print("test")
                     valid_move_rook = True
     return valid_move_rook
 
 
-# coordinat = coordinate("e3e2")
-# plate[coordinat[1]][coordinat[0]] = wht_r
-# print(valid_move_rook(coordinat))
-# coo = coordinate("e2e1")
-# plate[coo[1]][coo[0]] = wht_q
-# print(valid_eat(coordinate("e2e1")))
+coordinat = coordinate("d3e2")
+plate[coordinat[1]][coordinat[0]] = wht_r
+print(valid_move_rook(coordinat))
