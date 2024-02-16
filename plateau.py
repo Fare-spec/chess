@@ -178,6 +178,44 @@ def valid_move_rook(coordinate):
     return valid_move_rook
 
 
+def valid_move_diagonal(coordinate):
+    valid_move_diagonal = False
+    # si la hauteur de départ est supérieur a celle d'arrivée etc...
+    if coordinate[1] > coordinate[3]:
+        diff_hauteur = coordinate[1] - coordinate[3]
+    elif coordinate[1] < coordinate[3]:
+        diff_hauteur = coordinate[3] - coordinate[1]
+    if coordinate[0] > coordinate[2]:
+        diff_hor = coordinate[0] - coordinate[2]
+    elif coordinate[0] < coordinate[2]:
+        diff_hor = coordinate[2] - coordinate[0]
+    if diff_hauteur == diff_hor:
+        if coordinate[1] > coordinate[3]:
+            if coordinate[0] > coordinate[2]:
+                for i in range(coordinate[0] - coordinate[2]):
+                    if plate[coordinat[0] - i][coordinate[1] - i] == None:
+                        if valid_eat(coordinate) == True:
+                            valid_move_diagonal = True
+            elif coordinate[0] < coordinate[2]:
+                 for i in range(coordinate[2] - coordinate[0]):
+                    if plate[coordinat[0] - i][coordinate[1] + i] == None:
+                        if valid_eat(coordinate) == True:
+                            valid_move_diagonal = True
+        
+        elif coordinate[3] > coordinate[1]:
+            if coordinate[0] > coordinate[2]:
+                for i in range(coordinate[0] - coordinate[2]):
+                    if plate[coordinat[0] + i][coordinate[1] - i] == None:
+                        if valid_eat(coordinate) == True:
+                            valid_move_diagonal = True
+            elif coordinate[0] < coordinate[2]:
+                 for i in range(coordinate[2] - coordinate[0]):
+                    if plate[coordinat[0] + i][coordinate[1] + i] == None:
+                        if valid_eat(coordinate) == True:
+                            valid_move_diagonal = True
+    return valid_move_diagonal
+
+
 coordinat = coordinate("d3e2")
 plate[coordinat[1]][coordinat[0]] = wht_r
 print(valid_move_rook(coordinat))
