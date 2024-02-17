@@ -178,15 +178,11 @@ def valid_move_rook(coordinate):
     return valid_move_rook
 
 def empty_case(coordinate_case):
-    """
-    Purpose: arg
-    """
-    if plate[coordinate_case[1]][coordinate_case[0]] == None:
-        empty_case = True
-    else:
+    empty_case = True
+    if plate[coordinate_case[0]][coordinate_case[1]] != None:
         empty_case = False
+        print(plate[coordinate_case[0]][coordinate_case[1]])        
     return empty_case
-# end def
 def valid_move_diagonal(coordinate):
     valid_move_diagonal = False
     # si la hauteur de départ est supérieur a celle d'arrivée etc...
@@ -203,43 +199,20 @@ def valid_move_diagonal(coordinate):
 
         diff_hor = coordinate[2] - coordinate[0]
     if diff_hauteur == diff_hor:
-
-        if coordinate[1] > coordinate[3]:
-    
-            if coordinate[0] > coordinate[2]:
-                for i in range(coordinate[0] - coordinate[2]):
-                    print(1)
-                    if plate[coordinat[1] - i][coordinate[0] - i] == None:
-                        print(1)
-                        if valid_eat(coordinate) == True:
-                            valid_move_diagonal = True
-                            print(1)
-            elif coordinate[0] < coordinate[2]:
-        
-
-                for i in range(coordinate[2] - coordinate[0]):
-                    print(plate[coordinat[1] + i][coordinate[0] + i])
-                    if plate[coordinat[1] - i][coordinate[0] + i] == None:
-                        
-                        if valid_eat(coordinate) == True:
-                            
-                            valid_move_diagonal = True
-        
-        elif coordinate[3] > coordinate[1]:
-            if coordinate[0] > coordinate[2]:
-                print(1)
-                for i in range(coordinate[0] - coordinate[2]):
-                    if plate[coordinat[1] + i][coordinate[0] - i] == None:
-                        if valid_eat(coordinate) == True:
-                            valid_move_diagonal = True
-            elif coordinate[0] < coordinate[2]:
-                 for i in range(coordinate[2] - coordinate[0]):
-                    if plate[coordinat[1] + i][coordinate[0] + i] == None:
-                        if valid_eat(coordinate) == True:
-                            valid_move_diagonal = True
+        #si la hauteur de départ est inférieure a celle d'arrivé
+        if coordinate[1]<coordinate[3]:
+            # si la coordoné l de départ est inférieure a celle d'arrivée
+            if coordinate[0]>coordinate[2]:
+                for i in range(diff_hauteur+1):
+                    #print(plate[coordinate[1]+i][coordinate[0]-i])
+                    print(empty_case([coordinate[1]+i,coordinate[0]-i]))
+                    print(coordinate[1]+i,coordinate[0]-i)
+                    if empty_case([coordinate[1]+i,coordinate[0]-i]) == True :
+                        valid_move_diagonal = True
     return valid_move_diagonal
 
 
-coordinat = coordinate("d6f4")
-coo = [3,3]
+coordinat = coordinate("h6c1")
 print(valid_move_diagonal(coordinat))
+# print([coordinat[3],coordinat[2]])
+# print(empty_case([coordinat[3],coordinat[2]]))
