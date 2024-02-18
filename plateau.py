@@ -155,20 +155,19 @@ def valid_left_rightward_move(coordinate):
 
 def valid_move_rook(coordinate):
     valid_move_rook = False
-    if plate[coordinate[1]][coordinate[0]] == blk_r or wht_r:
-        if coordinate[1] == coordinate[3]:
-            if valid_left_rightward_move(coordinate) == True:
-                if plate[coordinate[2]][coordinate[3]] == None:
+    if coordinate[1] == coordinate[3]:
+        if valid_left_rightward_move(coordinate) == True:
+            if plate[coordinate[2]][coordinate[3]] == None:
+                valid_move_rook = True
+            else:
+                if valid_eat(coordinate) == True:
                     valid_move_rook = True
-                else:
-                    if valid_eat(coordinate) == True:
-                        valid_move_rook = True
-        elif coordinate[0] == coordinate[2]:
-            if valid_forward_or_backward_move(coordinate) == True:
-                if plate[coordinate[3]][coordinate[2]] == None:
-                    valid_move_rook = True
-                elif valid_eat(coordinate) == True:
-                    valid_move_rook = True
+    elif coordinate[0] == coordinate[2]:
+        if valid_forward_or_backward_move(coordinate) == True:
+            if plate[coordinate[3]][coordinate[2]] == None:
+                valid_move_rook = True
+            elif valid_eat(coordinate) == True:
+                valid_move_rook = True
     return valid_move_rook
 
 
@@ -253,9 +252,15 @@ def valid_move_diagonal(coordinate):
     return valid_move_diagonal
 
 
+def valid_move_queen(coordinate):
+    valid_move_queen = False
+    if valid_forward_or_backward_move(coordinate) == True or valid_move_rook(coordinate) == True:
+        valid_move_queen = True 
+    return valid_move_queen
 
-coordinat = coordinate("b3d5")
-print(valid_move_diagonal(coordinat))
+
+coordinat = coordinate("d3d5")
+print(valid_move_queen(coordinat))
 # print([coordinat[3],coordinat[2]])
 # print(empty_case([coordinat[3],coordinat[2]]))
 plate_tidy()
