@@ -20,8 +20,7 @@ blk_p = "bl_p"
 black_pieces = [blk_r, blk_k, blk_b,blk_q, blk_ki, blk_b, blk_k, blk_r]
 
 black_pawn = [(blk_p) for _ in range(width)]
-# print(black_pawn)
-# print(black_pieces)
+
 
 
 # pièces blanches
@@ -34,11 +33,20 @@ wht_q = "wh_q"
 wht_p = "wh_p"
 white_pieces = [wht_r, wht_k, wht_b, wht_q,wht_ki,wht_b, wht_k, wht_r]
 white_pawn = [(wht_p) for _ in range(width)]
-# print(white_pawn)
-# print(white_pieces)
 
 
-# rangement du plateau
+lettres = ["a", "b", "c", "d", "e", "f", "g", "h"]
+chiffres = [(8 - i) for i in range(0, width)]
+
+
+
+
+# # affiche le plateau
+# for element in plate:
+#     print(element, "\n")
+
+
+
 def plate_tidy():
     """cette fonction attribue les pièces a leurs place d'origine"""
     plate[0] = black_pieces
@@ -49,16 +57,6 @@ def plate_tidy():
     return
 
 
-plate_tidy()
-# # affiche le plateau
-# for element in plate:
-#     print(element, "\n")
-
-lettres = ["a", "b", "c", "d", "e", "f", "g", "h"]
-chiffres = [(8 - i) for i in range(0, width)]
-
-
-# transfome les coordonnées courante en chiffres
 def coordinate(co):
     coordinate = list(co)
     coordinate[1] = 8 - int(coordinate[1])
@@ -71,7 +69,6 @@ def coordinate(co):
     return coordinate
 
 
-# vérifie le move du poneys ;)
 def valid_mv_knight(coordinate):
     valid_mv_knight = False
     if coordinate[0] == coordinate[2] + 1 or coordinate[0] == coordinate[2] - 1:
@@ -80,9 +77,6 @@ def valid_mv_knight(coordinate):
             if valid_eat(coordinate) == False:
                 valid_mv_knight = False
     return valid_mv_knight
-
-
-# print(valid_mv_knight(coordinate(co)))
 
 
 def valid_eat(coordinate):
@@ -126,7 +120,6 @@ def valid_forward_or_backward_move(coordinate):
     return valid_forward_move
 
 
-# pour les mouvements divers des pions
 def valid_move_pawn(coordinate):
     valid_move_pawn = False
     if plate[coordinate[1]][coordinate[0]] == wht_p:
@@ -147,7 +140,6 @@ def valid_move_pawn(coordinate):
     return valid_move_pawn
 
 
-# pour les mouvement horizontaux
 def valid_left_rightward_move(coordinate):
     valid_left_rightward_move = True
     if coordinate[2] < coordinate[0]:
@@ -180,15 +172,11 @@ def valid_move_rook(coordinate):
     return valid_move_rook
 
 
-
-
-
 def empty_case(coordinate_case):
     empty_case = True
     if plate[coordinate_case[0]][coordinate_case[1]] != None:
         empty_case = False
     return empty_case
-
 
 
 def valid_move_diagonal(coordinate):
@@ -270,3 +258,4 @@ coordinat = coordinate("b3d5")
 print(valid_move_diagonal(coordinat))
 # print([coordinat[3],coordinat[2]])
 # print(empty_case([coordinat[3],coordinat[2]]))
+plate_tidy()
