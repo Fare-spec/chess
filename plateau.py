@@ -17,7 +17,7 @@ blk_q = "bl_q"
 
 blk_p = "bl_p"
 
-black_pieces = [blk_r, blk_k, blk_b, blk_ki, blk_q, blk_b, blk_k, blk_r]
+black_pieces = [blk_r, blk_k, blk_b,blk_q, blk_ki, blk_b, blk_k, blk_r]
 
 black_pawn = [(blk_p) for _ in range(width)]
 # print(black_pawn)
@@ -32,7 +32,7 @@ wht_ki = "wh_ki"
 wht_q = "wh_q"
 
 wht_p = "wh_p"
-white_pieces = [wht_r, wht_k, wht_b, wht_ki, wht_q, wht_b, wht_k, wht_r]
+white_pieces = [wht_r, wht_k, wht_b, wht_q,wht_ki,wht_b, wht_k, wht_r]
 white_pawn = [(wht_p) for _ in range(width)]
 # print(white_pawn)
 # print(white_pieces)
