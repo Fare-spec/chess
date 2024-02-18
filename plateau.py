@@ -195,46 +195,78 @@ def valid_move_diagonal(coordinate):
     valid_move_diagonal1 = True
 
     valid_move_diagonal = False
-    # si la hauteur de départ est supérieur a celle d'arrivée etc...
-    if coordinate[1] > coordinate[3]:
-        diff_hauteur = coordinate[1] - coordinate[3]
-
-    elif coordinate[1] < coordinate[3]:
+    if plate[coordinate[3]][coordinate[2]] != None and valid_eat(coordinate) == False:
+            valid_move_diagonal = False
+    else:
         
-        diff_hauteur = coordinate[3] - coordinate[1]
-    if coordinate[0] > coordinate[2]:
-        
-        diff_hor = coordinate[0] - coordinate[2]
-    elif coordinate[0] < coordinate[2]:
+        # si la hauteur de départ est supérieur a celle d'arrivée etc...
+        if coordinate[1] > coordinate[3]:
 
-        diff_hor = coordinate[2] - coordinate[0]
-    if diff_hauteur == diff_hor:
-        #si la hauteur de départ est inférieure a celle d'arrivé
-        if coordinate[1]<coordinate[3]:
-            # si la coordoné l de départ est inférieure a celle d'arrivée
-            if coordinate[0]>coordinate[2]:
-                for i in range(diff_hauteur):
-                    if empty_case([coordinate[1]+i,coordinate[0]-i]) == True  and valid_eat == True:
-                        valid_move_diagonal = True
-                    elif empty_case([coordinate[1]+i,coordinate[0]-i]) == False:
-                        valid_move_diagonal1 = False
-                    if valid_move_diagonal1 == False:
-                        valid_move_diagonal = False
-            # si la coordoné l de départ est supérieure a celle d'arrivée
-            elif coordinate[0]<coordinate[2]:
-                for i in range(diff_hauteur):
-                    if empty_case([coordinate[1]+i,coordinate[0]+i]) == True :
-                        valid_move_diagonal = True
-                    elif empty_case([coordinate[1]+i,coordinate[0]+i]) == False :
-                        valid_move_diagonal1 = False
-                    if valid_move_diagonal1 == False:
-                        valid_move_diagonal = False
+            diff_hauteur = coordinate[1] - coordinate[3]
+
+        elif coordinate[1] < coordinate[3]:
+            
+            diff_hauteur = coordinate[3] - coordinate[1]
+
+        if coordinate[0] > coordinate[2]:
+            
+            diff_hor = coordinate[0] - coordinate[2]
+
+        elif coordinate[0] < coordinate[2]:
+
+            diff_hor = coordinate[2] - coordinate[0]
+
+        if diff_hauteur == diff_hor:
+            #si la hauteur de départ est inférieure a celle d'arrivé
+            if coordinate[1]<coordinate[3]:
+                # si la coordoné l de départ est inférieure a celle d'arrivée
+                if coordinate[0]>coordinate[2]:
+                    
+                    for i in range(diff_hauteur):
+                        if empty_case([coordinate[1]+i,coordinate[0]-i]) == True:
+                            valid_move_diagonal = True
+                        elif empty_case([coordinate[1]+i,coordinate[0]-i]) == False:
+                            valid_move_diagonal1 = False
+                        if valid_move_diagonal1 == False:
+                            valid_move_diagonal = False
+                # si la coordoné l de départ est supérieure a celle d'arrivée
+                elif coordinate[0]<coordinate[2]:
+                    
+                    for i in range(diff_hauteur):
+                        if empty_case([coordinate[1]+i,coordinate[0]+i]) == True :
+                            valid_move_diagonal = True
+                        elif empty_case([coordinate[1]+i,coordinate[0]+i]) == False :
+                            valid_move_diagonal1 = False
+                        if valid_move_diagonal1 == False:
+                            valid_move_diagonal = False
+            # si la hauteur de départ est supérieur a celle d'arrivée
+            elif coordinate[1]>coordinate[3]:
+                # si la coordoné l de départ est inférieure a celle d'arrivée
+                if coordinate[0]>coordinate[2]:
+                    
+                    for i in range(diff_hauteur):
+                        if empty_case([coordinate[1]-i,coordinate[0]-i]) == True:
+                            valid_move_diagonal = True
+                        elif empty_case([coordinate[1]-i,coordinate[0]-i]) == False:
+                            valid_move_diagonal1 = False
+                        if valid_move_diagonal1 == False:
+                            valid_move_diagonal = False
+                # si la coordoné l de départ est supérieure a celle d'arrivée
+                elif coordinate[0]<coordinate[2]:
+                    
+                    for i in range(diff_hauteur):
+                        if empty_case([coordinate[1]-i,coordinate[0]+i]) == True :
+                            valid_move_diagonal = True
+                        elif empty_case([coordinate[1]-i,coordinate[0]+i]) == False :
+                            valid_move_diagonal1 = False
+                        if valid_move_diagonal1 == False:
+                            valid_move_diagonal = False
     
     return valid_move_diagonal
 
 
 
-coordinat = coordinate("a6f1")
+coordinat = coordinate("b3d5")
 print(valid_move_diagonal(coordinat))
 # print([coordinat[3],coordinat[2]])
 # print(empty_case([coordinat[3],coordinat[2]]))
